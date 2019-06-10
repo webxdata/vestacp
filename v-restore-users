@@ -1,0 +1,12 @@
+#!/bin/bash
+#DATE=$(date +%F)
+#FILES=$(find /home/backup -name "*$DATE.tar")
+FILES=$(find /home/backup -name "*.tar")
+for f in $FILES
+do
+		FILE=$(basename $f)
+		USER=$(echo $FILE | cut -f1 -d".")
+		echo "v-restore-user $USER $FILE"
+                /usr/local/vesta/bin/v-restore-user $USER $FILE
+done
+exit 0
